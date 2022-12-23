@@ -1,0 +1,20 @@
+.table {
+  width: 500px;
+  height: 500px;
+  background-color: gainsboro;
+  margin: 150px auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.table-item {
+  width: calc(500px / 3 - 2px);
+  height: calc(500px / 3 - 2px);
+  border: 1px solid black;
+  cursor: pointer;
+  font-size: 80px;
+  color: green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
