@@ -1,37 +1,81 @@
 const tableItems = document.querySelectorAll('.table-item');
-let player = 1;
+const notification = document.querySelector('.notification');
+const reset = document.querySelector('.reset');
+
+let player = 'X';
+let played = true;
+
+
 const table = [
   null, null, null,
   null, null, null,
   null, null, null,
 ];
-
 const winningArray = [
-  [1,2,3],
-  [1,5,9],
-  [1,4,6],
+  [0,1,2],
+  [0,4,8],
+  [0,3,6],
+  [1,4,7],
+  [2,4,6],
   [2,5,8],
-  [3,6,9],
-  [3,5,7],
-  [4,5,6],
-  [7,8,9],
+  [3,4,5],
+  [6,7,8],
 ];
 
-function drawItem() {
-  if(player === 1) {
-    this.innerHTML = 'X'
-    table[this.id] = 'X' 
-    player = 2;
-  } else {
-    this.innerHTML = 'O'
-    table[this.id] = 'O' 
-    player = 1;
-  }
-  console.log(table, 'this')
+
+function checkWin(){
+  return winningArray.forEach(combination => {
+    const isWinner = combination.every(item => table[item] === (player === 'O' ? "X" : "O"))
+      if(isWinner && player === 'O'){
+        played = false;
+        notification.innerHTML = 'Player X Win .!'
+      }
+
+      if(isWinner && player === 'X'){
+        played = false;
+        notification.innerHTML = 'Player O Win .!'
+      }
+
+      if(!isWinner && table.every(item => item !== null)){
+        played = false;
+        notification.innerHTML = 'Draw .!'
+      }
+  })
 }
 
+
+function drawItem() {
+  console.log(played)
+  if(played) {
+    if(this.innerHTML) return
+
+    if(player === 'X') {
+      this.innerHTML = 'X'
+      table[this.id] = 'X' 
+      player = 'O';
+    } else {
+      this.innerHTML = 'O'
+      table[this.id] = 'O' 
+      player = 'X';
+    }
+    checkWin();
+  }
+}
+
+
 for(let i = 0; i < tableItems.length; i++){
-  tableItems[i].addEventListener('click', drawItem, {once : true});
+  tableItems[i].addEventListener('click', drawItem);
 };
 
 
+reset.addEventListener('click', () => {
+  for(let i = 0; i < table.length; i++) {
+    table[i] = null;
+  }
+  for(let i = 0; i < tableItems.length; i++) {
+    tableItems[i].innerHTML = '';
+  }
+
+  notification.innerHTML = '';
+  played = true;
+})

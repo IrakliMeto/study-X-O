@@ -1,20 +1,53 @@
-.table {
-  width: 500px;
-  height: 500px;
-  background-color: gainsboro;
-  margin: 150px auto;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.table-item {
-  width: calc(500px / 3 - 2px);
-  height: calc(500px / 3 - 2px);
-  border: 1px solid black;
-  cursor: pointer;
-  font-size: 80px;
-  color: green;
+.game {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.table {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 30px;
+  gap: 10px;
+}
+
+.table-item {
+  width: calc(500px / 3 - 10px);
+  height: calc(500px / 3 - 10px);
+  cursor: pointer;
+  font-size: 80px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  background-color: #426469;
+}
+
+.notification {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #426469;
+  font-size: 45px;
+}
+
+.reset {
+  cursor: pointer;
+  min-width: 200px;
+  padding: 18px 30px;
+  border: none;
+  outline: none;
+  margin-top: 50px;
+  font-size: 20px;
+  background-color: #426469;
+  color: white;
+  border-radius: 30px;
 }
