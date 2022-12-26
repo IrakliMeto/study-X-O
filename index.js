@@ -26,19 +26,34 @@ const winningArray = [
 function checkWin(){
   return winningArray.forEach(combination => {
     const isWinner = combination.every(item => table[item] === (player === 'O' ? "X" : "O"))
+
       if(isWinner && player === 'O'){
         played = false;
         notification.innerHTML = 'Player X Win .!'
+
+        for(let i = 0; i < combination.length; i++) {
+          tableItems[combination[i]].classList.add('winned')
+          console.log(tableItems[combination[i]])
+        }
       }
 
       if(isWinner && player === 'X'){
         played = false;
         notification.innerHTML = 'Player O Win .!'
+
+        for(let i = 0; i < combination.length; i++) {
+          tableItems[combination[i]].classList.add('winned')
+          console.log(tableItems[combination[i]])
+        }
       }
 
       if(!isWinner && table.every(item => item !== null)){
         played = false;
         notification.innerHTML = 'Draw .!'
+        for(let i = 0; i < combination.length; i++) {
+          tableItems[combination[i]].classList.add('winned')
+          console.log(tableItems[combination[i]])
+        }
       }
   })
 }
@@ -73,6 +88,7 @@ reset.addEventListener('click', () => {
     table[i] = null;
   }
   for(let i = 0; i < tableItems.length; i++) {
+    tableItems[i].classList.remove('winned');
     tableItems[i].innerHTML = '';
   }
 
