@@ -1,4 +1,5 @@
 .game {
+  max-width: 500px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -6,20 +7,24 @@
   align-items: center;
   flex-direction: column;
   position: relative;
+  margin: 0 auto;
 }
 
 .table {
-  width: 500px;
-  height: 500px;
+  max-height: 500px;
+  width: 100%;
+  height: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   border-radius: 30px;
   gap: 10px;
 }
 
 .table-item {
-  width: calc(500px / 3 - 10px);
-  height: calc(500px / 3 - 10px);
+  width: calc(100% / 3 - 7px);
+  height: calc(100% / 3 - 7px);
   cursor: pointer;
   font-size: 80px;
   color: white;
@@ -31,17 +36,14 @@
 }
 
 .notification {
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-bottom: 30px;
   color: #426469;
   font-size: 45px;
 }
 
 .reset {
   cursor: pointer;
-  min-width: 200px;
+  width: 100%;
   padding: 18px 30px;
   border: none;
   outline: none;
@@ -49,5 +51,5 @@
   font-size: 20px;
   background-color: #426469;
   color: white;
-  border-radius: 30px;
+  border-radius: 20px;
 }
