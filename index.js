@@ -2,8 +2,8 @@ const tableItems = document.querySelectorAll('.table-item');
 const notification = document.querySelector('.notification');
 const reset = document.querySelector('.reset');
 
-let player = 'X';
-let played = true;
+let player = 'O';
+let ContinuePlay = true;
 
 
 const table = [
@@ -25,17 +25,18 @@ const winningArray = [
 
 function checkWin(){
   return winningArray.forEach(combination => {
-    const isWinner = combination.every(item => table[item] === (player === 'O' ? "X" : "O"))
+    const isWinner = combination.every(item => table[item] === (player === 'X' ? "X" : "O"))
+    console.log(player, 'player')
 
       if(isWinner) {
-        played = false;
+        ContinuePlay = false;
         notification.innerHTML = `player ${player} Win !`
         addLine(combination);
       }
 
 
       if(!isWinner && table.every(item => item !== null)){
-        played = false;
+        ContinuePlay = false;
         notification.innerHTML = 'Draw .!'
         addLine(combination);
       }
@@ -50,12 +51,13 @@ function addLine(arr){
 
 
 function drawItem() {
-  if(played) {
+  if(ContinuePlay) {
     if(this.innerHTML) return
+
+    player === 'X' ? player = "O" : player = "X";
 
     this.innerHTML = `${player}`
     table[this.id] = `${player}` 
-    player === 'X' ? player = "O" : player = "X"
 
     checkWin();
   }
@@ -77,5 +79,6 @@ reset.addEventListener('click', () => {
   }
 
   notification.innerHTML = '';
-  played = true;
+  ContinuePlay = true;
+  player = 'O';
 })
