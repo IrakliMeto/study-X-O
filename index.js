@@ -30,32 +30,27 @@ function checkWin(){
       if(isWinner && player === 'O'){
         played = false;
         notification.innerHTML = 'Player X Win .!'
-
-        for(let i = 0; i < combination.length; i++) {
-          tableItems[combination[i]].classList.add('winned')
-          console.log(tableItems[combination[i]])
-        }
+        addLine(combination);
       }
 
       if(isWinner && player === 'X'){
         played = false;
         notification.innerHTML = 'Player O Win .!'
-
-        for(let i = 0; i < combination.length; i++) {
-          tableItems[combination[i]].classList.add('winned')
-          console.log(tableItems[combination[i]])
-        }
+        addLine(combination);
       }
 
       if(!isWinner && table.every(item => item !== null)){
         played = false;
         notification.innerHTML = 'Draw .!'
-        for(let i = 0; i < combination.length; i++) {
-          tableItems[combination[i]].classList.add('winned')
-          console.log(tableItems[combination[i]])
-        }
+        addLine(combination);
       }
   })
+}
+
+function addLine(arr){
+  for(let i = 0; i < arr.length; i++) {
+    tableItems[arr[i]].classList.add('winned')
+  }
 }
 
 
