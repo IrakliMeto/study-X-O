@@ -27,17 +27,12 @@ function checkWin(){
   return winningArray.forEach(combination => {
     const isWinner = combination.every(item => table[item] === (player === 'O' ? "X" : "O"))
 
-      if(isWinner && player === 'O'){
+      if(isWinner) {
         played = false;
-        notification.innerHTML = 'Player X Win .!'
+        notification.innerHTML = `player ${player} Win !`
         addLine(combination);
       }
 
-      if(isWinner && player === 'X'){
-        played = false;
-        notification.innerHTML = 'Player O Win .!'
-        addLine(combination);
-      }
 
       if(!isWinner && table.every(item => item !== null)){
         played = false;
@@ -55,19 +50,13 @@ function addLine(arr){
 
 
 function drawItem() {
-  console.log(played)
   if(played) {
     if(this.innerHTML) return
 
-    if(player === 'X') {
-      this.innerHTML = 'X'
-      table[this.id] = 'X' 
-      player = 'O';
-    } else {
-      this.innerHTML = 'O'
-      table[this.id] = 'O' 
-      player = 'X';
-    }
+    this.innerHTML = `${player}`
+    table[this.id] = `${player}` 
+    player === 'X' ? player = "O" : player = "X"
+
     checkWin();
   }
 }
