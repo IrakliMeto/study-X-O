@@ -2,7 +2,7 @@ const tableItems = document.querySelectorAll('.table-item');
 const notification = document.querySelector('.notification');
 const reset = document.querySelector('.reset');
 
-let player = 'O';
+let player = 'X';
 let ContinuePlay = true;
 
 
@@ -54,12 +54,12 @@ function drawItem() {
   if(ContinuePlay) {
     if(this.innerHTML) return
 
-    player === 'X' ? player = "O" : player = "X";
 
     this.innerHTML = `${player}`
     table[this.id] = `${player}` 
 
     checkWin();
+    player = player === 'X' ? "O" : "X";
   }
 }
 
